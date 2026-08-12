@@ -20,8 +20,8 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 
 from fastembed import TextEmbedding
-from horizon_bench.stats import wilson
 
+from bench.stats import wilson
 from bench.workload import Pair, full_workload
 
 MODEL = "BAAI/bge-small-en-v1.5"

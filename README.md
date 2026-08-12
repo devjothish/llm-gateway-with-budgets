@@ -127,8 +127,8 @@ that returns 429 without recording that is a black box.
 
 Everything below was run on this machine. Nothing is projected.
 
-**Test suite** — `19 passed`, plus `ruff`, `ruff format` and `mypy --strict`
-clean across 15 files.
+**Test suite** — `24 passed`, plus `ruff`, `ruff format` and `mypy --strict`
+clean across 17 files.
 
 **Rate limiting under real concurrency.** 14 simultaneous HTTP requests against
 a team capped at 10 requests/minute:
@@ -206,7 +206,7 @@ docker compose up -d redis postgres
 uv sync --extra dev
 
 uv run ruff check . && uv run mypy app tests bench
-uv run pytest tests/ -q                 # 19 passed, no API key needed
+uv run pytest tests/ -q                 # 24 passed, no API key needed
 
 uv run python -m bench.sweep            # the cache measurement
 ```
@@ -240,5 +240,6 @@ bench/workload.py the three prompt strata
 bench/sweep.py    the threshold sweep
 ```
 
-Statistics come from `horizon_bench.stats` in the sibling `horizon-bench`
-project rather than a second copy of the Wilson interval code.
+`bench/stats.py` holds a Wilson score interval copied from a sibling benchmark
+project rather than imported, so this repo builds from a clean clone with no
+path dependency. The copy carries its own tests.

@@ -35,14 +35,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
-      - run: uv pip install --system ".[dev]"
-      - run: ruff check .
-      - run: ruff format --check .
-      - run: mypy app tests
-      # -p no:randomly is not needed, but --strict-markers is: a typo'd marker
-      # silently deselects tests, and a suite that runs nothing reports green.
-      - name: Limiter and ledger tests
+
+      # `uv sync` into a project venv, not `uv pip install --system`. The
+      # runner's interpreter is externally managed (PEP 668) and rejects a
+      # system install outright. This also makes CI run the same commands as
+      # a developer does locally.
+      - run: uv sync --extra dev
+
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy app tests bench
+
+      # --strict-markers: a typo'd marker silently deselects tests, and a suite
+      # that runs nothing reports green.
+      - name: Limiter, ledger and app tests
         env:
           REDIS_URL: redis://localhost:6379/15
           DATABASE_URL: postgresql://gateway:gateway@localhost:5433/gateway
-        run: pytest tests/ -q --strict-markers
+        run: uv run pytest tests/ -q --strict-markers
+
+      # The measurement behind this repo's headline claim. Free, no API key,
+      # and it fails loudly if the workload or the sweep stops working.
+      - name: Cache sweep reproduces
+        run: uv run python -m bench.sweep BAAI/bge-small-en-v1.5

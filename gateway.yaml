@@ -1,0 +1,74 @@
+# Model prices and team policy.
+#
+# ─────────────────────────────────────────────────────────────────────────────
+# PRICES BELOW ARE UNVERIFIED PLACEHOLDERS. Check them against each provider's
+# current pricing page and set `pricing_checked` before quoting any cost or
+# savings number from this gateway. Every figure the README reports is derived
+# from this file, so a stale value here silently corrupts the headline result.
+# ─────────────────────────────────────────────────────────────────────────────
+pricing_checked: null # set to an ISO date once verified
+
+models:
+  # Local, via Ollama. Priced at zero because it is: no per-token charge, and
+  # the marginal cost of a request is electricity. That zero is not a
+  # placeholder like the ones below, and it is what makes the cost-routing
+  # measurement interesting — the cheapest tier is free, so the only question
+  # left is what quality it costs.
+  qwen3-local:
+    id: qwen3:4b
+    provider: ollama
+    tier: local
+    price_in_per_mtok: "0"
+    price_out_per_mtok: "0"
+
+  claude-haiku:
+    id: claude-haiku-4-5-20251001
+    provider: anthropic
+    tier: cheap
+    price_in_per_mtok: "1.00"
+    price_out_per_mtok: "5.00"
+
+  claude-sonnet:
+    id: claude-sonnet-5
+    provider: anthropic
+    tier: frontier
+    price_in_per_mtok: "3.00"
+    price_out_per_mtok: "15.00"
+
+  gpt-mini:
+    id: gpt-5.2-mini
+    provider: openai
+    tier: cheap
+    price_in_per_mtok: "0.50"
+    price_out_per_mtok: "2.00"
+
+  gpt:
+    id: gpt-5.2
+    provider: openai
+    tier: frontier
+    price_in_per_mtok: "5.00"
+    price_out_per_mtok: "20.00"
+
+# Demo teams, deliberately asymmetric so the limits are visible in a load test
+# rather than theoretical. Generate a key hash with:
+#   uv run python -m app.config <your-key>
+#
+# The two hashes below are for the literal strings "demo-research-key" and
+# "demo-batch-key". They are demo credentials for a local stack and are useless
+# against anything else, but replace them before this reaches a real deployment.
+teams:
+  research:
+    key_sha256: e5cf688a1fb47165f10c9a655368fb73d063a1b764e7a33a9ae57a2c9044783a
+    requests_per_minute: 60
+    tokens_per_minute: 200000
+    monthly_budget_usd: "500.00"
+    allowed_models: [qwen3-local, claude-haiku, claude-sonnet, gpt-mini, gpt]
+
+  # Batch jobs get a low request rate and a hard budget: the workload this
+  # gateway exists to stop is an overnight loop nobody is watching.
+  batch:
+    key_sha256: 74045098110de75482c9e34a190dab5a1dd308be1ed6e16fee2dc05e01152d74
+    requests_per_minute: 10
+    tokens_per_minute: 50000
+    monthly_budget_usd: "25.00"
+    allowed_models: [qwen3-local, claude-haiku, gpt-mini]

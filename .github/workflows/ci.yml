@@ -1,0 +1,48 @@
+name: ci
+
+on:
+  push: { branches: [main] }
+  pull_request:
+
+jobs:
+  # Everything here is free and deterministic, so it runs on every push.
+  # The limiter tests need Redis but no API key, which is why they live in this
+  # tier rather than behind a paid gate: the atomicity property is exactly the
+  # kind of thing that must be checked on every commit.
+  static:
+    runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 5
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: gateway
+          POSTGRES_PASSWORD: gateway
+          POSTGRES_DB: gateway
+        ports: ["5433:5432"]
+        options: >-
+          --health-cmd "pg_isready -U gateway"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv pip install --system ".[dev]"
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: mypy app tests
+      # -p no:randomly is not needed, but --strict-markers is: a typo'd marker
+      # silently deselects tests, and a suite that runs nothing reports green.
+      - name: Limiter and ledger tests
+        env:
+          REDIS_URL: redis://localhost:6379/15
+          DATABASE_URL: postgresql://gateway:gateway@localhost:5433/gateway
+        run: pytest tests/ -q --strict-markers

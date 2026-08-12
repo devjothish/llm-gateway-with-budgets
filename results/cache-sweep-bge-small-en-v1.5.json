@@ -1,0 +1,755 @@
+{
+  "model": "BAAI/bge-small-en-v1.5",
+  "thresholds": [
+    {
+      "threshold": 0.85,
+      "hits": 49,
+      "pairs": 80,
+      "hit_rate": 0.6125,
+      "hit_rate_ci": [
+        0.5029345562232477,
+        0.711756003117223
+      ],
+      "false_hits": 35,
+      "false_hit_rate": 0.7142857142857143,
+      "false_hit_rate_ci": [
+        0.5759085079389967,
+        0.8215056506027583
+      ],
+      "duplicates_caught": 14,
+      "duplicates_total": 20
+    },
+    {
+      "threshold": 0.9,
+      "hits": 33,
+      "pairs": 80,
+      "hit_rate": 0.4125,
+      "hit_rate_ci": [
+        0.3110568651151309,
+        0.5219615887311697
+      ],
+      "false_hits": 25,
+      "false_hit_rate": 0.7575757575757576,
+      "false_hit_rate_ci": [
+        0.5897505131450971,
+        0.8716843865335271
+      ],
+      "duplicates_caught": 8,
+      "duplicates_total": 20
+    },
+    {
+      "threshold": 0.92,
+      "hits": 20,
+      "pairs": 80,
+      "hit_rate": 0.25,
+      "hit_rate_ci": [
+        0.16806105812094313,
+        0.35484881001134444
+      ],
+      "false_hits": 14,
+      "false_hit_rate": 0.7,
+      "false_hit_rate_ci": [
+        0.4810232237710206,
+        0.854524726031006
+      ],
+      "duplicates_caught": 6,
+      "duplicates_total": 20
+    },
+    {
+      "threshold": 0.95,
+      "hits": 6,
+      "pairs": 80,
+      "hit_rate": 0.075,
+      "hit_rate_ci": [
+        0.034824774851087884,
+        0.15412200097380097
+      ],
+      "false_hits": 6,
+      "false_hit_rate": 1.0,
+      "false_hit_rate_ci": [
+        0.6096569663469356,
+        1.0
+      ],
+      "duplicates_caught": 0,
+      "duplicates_total": 20
+    },
+    {
+      "threshold": 0.97,
+      "hits": 0,
+      "pairs": 80,
+      "hit_rate": 0.0,
+      "hit_rate_ci": [
+        0.0,
+        0.0458197362645751
+      ],
+      "false_hits": 0,
+      "false_hit_rate": NaN,
+      "false_hit_rate_ci": [
+        NaN,
+        NaN
+      ],
+      "duplicates_caught": 0,
+      "duplicates_total": 20
+    },
+    {
+      "threshold": 0.99,
+      "hits": 0,
+      "pairs": 80,
+      "hit_rate": 0.0,
+      "hit_rate_ci": [
+        0.0,
+        0.0458197362645751
+      ],
+      "false_hits": 0,
+      "false_hit_rate": NaN,
+      "false_hit_rate_ci": [
+        NaN,
+        NaN
+      ],
+      "duplicates_caught": 0,
+      "duplicates_total": 20
+    }
+  ],
+  "pairs": [
+    {
+      "a": "Summarize the article in 3 bullet points.",
+      "b": "Summarize the article in 5 bullet points.",
+      "stratum": "near_miss",
+      "axis": "quantity",
+      "interchangeable": false,
+      "cosine": 0.9098944067955017
+    },
+    {
+      "a": "Summarize the article in 2 bullet points.",
+      "b": "Summarize the article in 7 bullet points.",
+      "stratum": "near_miss",
+      "axis": "quantity",
+      "interchangeable": false,
+      "cosine": 0.9016725420951843
+    },
+    {
+      "a": "Summarize the article in 4 bullet points.",
+      "b": "Summarize the article in 10 bullet points.",
+      "stratum": "near_miss",
+      "axis": "quantity",
+      "interchangeable": false,
+      "cosine": 0.9094856381416321
+    },
+    {
+      "a": "List 3 reasons why this approach fails.",
+      "b": "List 5 reasons why this approach fails.",
+      "stratum": "near_miss",
+      "axis": "quantity",
+      "interchangeable": false,
+      "cosine": 0.9337273240089417
+    },
+    {
+      "a": "List 2 reasons why this approach fails.",
+      "b": "List 7 reasons why this approach fails.",
+      "stratum": "near_miss",
+      "axis": "quantity",
+      "interchangeable": false,
+      "cosine": 0.9189717173576355
+    },
+    {
+      "a": "Give me 3 examples of this pattern.",
+      "b": "Give me 5 examples of this pattern.",
+      "stratum": "near_miss",
+      "axis": "quantity",
+      "interchangeable": false,
+      "cosine": 0.9291608929634094
+    },
+    {
+      "a": "Give me 4 examples of this pattern.",
+      "b": "Give me 10 examples of this pattern.",
+      "stratum": "near_miss",
+      "axis": "quantity",
+      "interchangeable": false,
+      "cosine": 0.9214994311332703
+    },
+    {
+      "a": "Write 3 test cases for this function.",
+      "b": "Write 8 test cases for this function.",
+      "stratum": "near_miss",
+      "axis": "quantity",
+      "interchangeable": false,
+      "cosine": 0.883676290512085
+    },
+    {
+      "a": "Write 2 test cases for this function.",
+      "b": "Write 6 test cases for this function.",
+      "stratum": "near_miss",
+      "axis": "quantity",
+      "interchangeable": false,
+      "cosine": 0.8745868802070618
+    },
+    {
+      "a": "Name 3 alternatives to this library.",
+      "b": "Name 5 alternatives to this library.",
+      "stratum": "near_miss",
+      "axis": "quantity",
+      "interchangeable": false,
+      "cosine": 0.9411965608596802
+    },
+    {
+      "a": "Name 2 alternatives to this library.",
+      "b": "Name 10 alternatives to this library.",
+      "stratum": "near_miss",
+      "axis": "quantity",
+      "interchangeable": false,
+      "cosine": 0.9001082181930542
+    },
+    {
+      "a": "Convert the following configuration to JSON.",
+      "b": "Convert the following configuration to YAML.",
+      "stratum": "near_miss",
+      "axis": "format",
+      "interchangeable": false,
+      "cosine": 0.7778615951538086
+    },
+    {
+      "a": "Convert the following configuration to JSON.",
+      "b": "Convert the following configuration to TOML.",
+      "stratum": "near_miss",
+      "axis": "format",
+      "interchangeable": false,
+      "cosine": 0.7294332981109619
+    },
+    {
+      "a": "Return the parsed result as JSON.",
+      "b": "Return the parsed result as XML.",
+      "stratum": "near_miss",
+      "axis": "format",
+      "interchangeable": false,
+      "cosine": 0.8022850751876831
+    },
+    {
+      "a": "Return the parsed result as JSON.",
+      "b": "Return the parsed result as YAML.",
+      "stratum": "near_miss",
+      "axis": "format",
+      "interchangeable": false,
+      "cosine": 0.7898837924003601
+    },
+    {
+      "a": "Export this table as CSV.",
+      "b": "Export this table as XML.",
+      "stratum": "near_miss",
+      "axis": "format",
+      "interchangeable": false,
+      "cosine": 0.8414272665977478
+    },
+    {
+      "a": "Export this table as CSV.",
+      "b": "Export this table as JSON.",
+      "stratum": "near_miss",
+      "axis": "format",
+      "interchangeable": false,
+      "cosine": 0.8784113526344299
+    },
+    {
+      "a": "Serialize the response body to JSON.",
+      "b": "Serialize the response body to YAML.",
+      "stratum": "near_miss",
+      "axis": "format",
+      "interchangeable": false,
+      "cosine": 0.879917562007904
+    },
+    {
+      "a": "Sort the results in ascending order.",
+      "b": "Sort the results in descending order.",
+      "stratum": "near_miss",
+      "axis": "direction",
+      "interchangeable": false,
+      "cosine": 0.9515062570571899
+    },
+    {
+      "a": "List the commits in ascending order by date.",
+      "b": "List the commits in descending order by date.",
+      "stratum": "near_miss",
+      "axis": "direction",
+      "interchangeable": false,
+      "cosine": 0.9596335887908936
+    },
+    {
+      "a": "Rank these items by cost, increasing.",
+      "b": "Rank these items by cost, decreasing.",
+      "stratum": "near_miss",
+      "axis": "direction",
+      "interchangeable": false,
+      "cosine": 0.87246173620224
+    },
+    {
+      "a": "What are the advantages of using a monorepo?",
+      "b": "What are the disadvantages of using a monorepo?",
+      "stratum": "near_miss",
+      "axis": "polarity",
+      "interchangeable": false,
+      "cosine": 0.9267907738685608
+    },
+    {
+      "a": "What are the pros of using a monorepo?",
+      "b": "What are the cons of using a monorepo?",
+      "stratum": "near_miss",
+      "axis": "polarity",
+      "interchangeable": false,
+      "cosine": 0.9689667820930481
+    },
+    {
+      "a": "Describe the benefits of this migration strategy.",
+      "b": "Describe the drawbacks of this migration strategy.",
+      "stratum": "near_miss",
+      "axis": "polarity",
+      "interchangeable": false,
+      "cosine": 0.8927514553070068
+    },
+    {
+      "a": "Summarize the upsides of adopting this framework.",
+      "b": "Summarize the downsides of adopting this framework.",
+      "stratum": "near_miss",
+      "axis": "polarity",
+      "interchangeable": false,
+      "cosine": 0.9056999683380127
+    },
+    {
+      "a": "Translate the following paragraph into French.",
+      "b": "Translate the following paragraph into German.",
+      "stratum": "near_miss",
+      "axis": "language",
+      "interchangeable": false,
+      "cosine": 0.9145628809928894
+    },
+    {
+      "a": "Translate the following paragraph into Spanish.",
+      "b": "Translate the following paragraph into Japanese.",
+      "stratum": "near_miss",
+      "axis": "language",
+      "interchangeable": false,
+      "cosine": 0.8769257068634033
+    },
+    {
+      "a": "Write the error message in French.",
+      "b": "Write the error message in German.",
+      "stratum": "near_miss",
+      "axis": "language",
+      "interchangeable": false,
+      "cosine": 0.9102819561958313
+    },
+    {
+      "a": "Localize this UI string to Italian.",
+      "b": "Localize this UI string to Portuguese.",
+      "stratum": "near_miss",
+      "axis": "language",
+      "interchangeable": false,
+      "cosine": 0.9338032007217407
+    },
+    {
+      "a": "Convert the distance to miles.",
+      "b": "Convert the distance to kilometres.",
+      "stratum": "near_miss",
+      "axis": "unit",
+      "interchangeable": false,
+      "cosine": 0.9141799807548523
+    },
+    {
+      "a": "Report the file size in megabytes.",
+      "b": "Report the file size in gigabytes.",
+      "stratum": "near_miss",
+      "axis": "unit",
+      "interchangeable": false,
+      "cosine": 0.9610676765441895
+    },
+    {
+      "a": "Express the duration in seconds.",
+      "b": "Express the duration in minutes.",
+      "stratum": "near_miss",
+      "axis": "unit",
+      "interchangeable": false,
+      "cosine": 0.9515650868415833
+    },
+    {
+      "a": "Give the temperature in Celsius.",
+      "b": "Give the temperature in Fahrenheit.",
+      "stratum": "near_miss",
+      "axis": "unit",
+      "interchangeable": false,
+      "cosine": 0.9427728056907654
+    },
+    {
+      "a": "Show the first three entries in the log.",
+      "b": "Show the last three entries in the log.",
+      "stratum": "near_miss",
+      "axis": "boundary",
+      "interchangeable": false,
+      "cosine": 0.9160165190696716
+    },
+    {
+      "a": "Return the previous page of results.",
+      "b": "Return the next page of results.",
+      "stratum": "near_miss",
+      "axis": "boundary",
+      "interchangeable": false,
+      "cosine": 0.8973665237426758
+    },
+    {
+      "a": "Describe the first step of the deployment.",
+      "b": "Describe the last step of the deployment.",
+      "stratum": "near_miss",
+      "axis": "boundary",
+      "interchangeable": false,
+      "cosine": 0.8648529648780823
+    },
+    {
+      "a": "Which of these numbers are prime?",
+      "b": "Which of these numbers are not prime?",
+      "stratum": "near_miss",
+      "axis": "negation",
+      "interchangeable": false,
+      "cosine": 0.9249595403671265
+    },
+    {
+      "a": "List the services that are currently healthy.",
+      "b": "List the services that are not currently healthy.",
+      "stratum": "near_miss",
+      "axis": "negation",
+      "interchangeable": false,
+      "cosine": 0.9056235551834106
+    },
+    {
+      "a": "Which dependencies are pinned to a version?",
+      "b": "Which dependencies are not pinned to a version?",
+      "stratum": "near_miss",
+      "axis": "negation",
+      "interchangeable": false,
+      "cosine": 0.9617252349853516
+    },
+    {
+      "a": "Show the tests that are passing.",
+      "b": "Show the tests that are never passing.",
+      "stratum": "near_miss",
+      "axis": "negation",
+      "interchangeable": false,
+      "cosine": 0.860817015171051
+    },
+    {
+      "a": "Summarize this document in three bullets.",
+      "b": "Give me a three-bullet summary of this document.",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.9108514189720154
+    },
+    {
+      "a": "What does this function do?",
+      "b": "Explain the behaviour of this function.",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.8326152563095093
+    },
+    {
+      "a": "How do I install the package?",
+      "b": "What are the installation steps for the package?",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.934378445148468
+    },
+    {
+      "a": "Convert this dictionary to JSON.",
+      "b": "Serialize this dictionary as JSON.",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.9489497542381287
+    },
+    {
+      "a": "Find the bug in the code below.",
+      "b": "What is wrong with the code below?",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.71305912733078
+    },
+    {
+      "a": "Write a unit test for this method.",
+      "b": "Add a unit test covering this method.",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.826987087726593
+    },
+    {
+      "a": "What is the time complexity here?",
+      "b": "How does this scale with input size?",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.5995587706565857
+    },
+    {
+      "a": "Rename the variable to something clearer.",
+      "b": "Suggest a clearer name for this variable.",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.861049234867096
+    },
+    {
+      "a": "Explain this error message.",
+      "b": "What does this error mean?",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.8855812549591064
+    },
+    {
+      "a": "List the required environment variables.",
+      "b": "Which environment variables does this need?",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.8654521703720093
+    },
+    {
+      "a": "Refactor this to be more readable.",
+      "b": "Clean up this code so it reads better.",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.784099280834198
+    },
+    {
+      "a": "Is this query using an index?",
+      "b": "Does this query hit an index?",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.9227011799812317
+    },
+    {
+      "a": "Summarize the meeting notes.",
+      "b": "Give me the key points from the meeting notes.",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.8922008275985718
+    },
+    {
+      "a": "How do I roll back the deployment?",
+      "b": "What are the steps to revert the deployment?",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.92160564661026
+    },
+    {
+      "a": "Document this API endpoint.",
+      "b": "Write documentation for this API endpoint.",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.8850492238998413
+    },
+    {
+      "a": "What changed between these two versions?",
+      "b": "Describe the differences between these versions.",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.8399348855018616
+    },
+    {
+      "a": "Translate this comment into English.",
+      "b": "Render this comment in English.",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.8827398419380188
+    },
+    {
+      "a": "Why is the build failing?",
+      "b": "What is causing the build failure?",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.9359051585197449
+    },
+    {
+      "a": "Generate a regex for email addresses.",
+      "b": "Write a regular expression matching email addresses.",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.9200432300567627
+    },
+    {
+      "a": "Reduce the memory usage of this script.",
+      "b": "Make this script use less memory.",
+      "stratum": "duplicate",
+      "axis": "paraphrase",
+      "interchangeable": true,
+      "cosine": 0.901934802532196
+    },
+    {
+      "a": "What is the capital of Portugal?",
+      "b": "Write a haiku about winter rain.",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.3512045443058014
+    },
+    {
+      "a": "Write a haiku about winter rain.",
+      "b": "How do I proof sourdough overnight?",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.5287121534347534
+    },
+    {
+      "a": "How do I proof sourdough overnight?",
+      "b": "Explain the offside rule in football.",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.44647443294525146
+    },
+    {
+      "a": "Explain the offside rule in football.",
+      "b": "What year did the Apollo programme end?",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.40709590911865234
+    },
+    {
+      "a": "What year did the Apollo programme end?",
+      "b": "Recommend a beginner road bike.",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.3589584231376648
+    },
+    {
+      "a": "Recommend a beginner road bike.",
+      "b": "How does a heat pump work?",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.3953899145126343
+    },
+    {
+      "a": "How does a heat pump work?",
+      "b": "Summarize the plot of Middlemarch.",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.373920738697052
+    },
+    {
+      "a": "Summarize the plot of Middlemarch.",
+      "b": "What is the boiling point of ethanol?",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.4016002416610718
+    },
+    {
+      "a": "What is the boiling point of ethanol?",
+      "b": "How do I repot a fiddle-leaf fig?",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.4432602822780609
+    },
+    {
+      "a": "How do I repot a fiddle-leaf fig?",
+      "b": "Explain compound interest to a child.",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.45606479048728943
+    },
+    {
+      "a": "Explain compound interest to a child.",
+      "b": "What causes the northern lights?",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.4229928255081177
+    },
+    {
+      "a": "What causes the northern lights?",
+      "b": "Draft a thank-you note for a job interview.",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.3246314525604248
+    },
+    {
+      "a": "Draft a thank-you note for a job interview.",
+      "b": "How long should I rest between sets?",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.4773124158382416
+    },
+    {
+      "a": "How long should I rest between sets?",
+      "b": "What is the difference between jam and preserve?",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.48418527841567993
+    },
+    {
+      "a": "What is the difference between jam and preserve?",
+      "b": "Describe the rules of shogi.",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.45695599913597107
+    },
+    {
+      "a": "Describe the rules of shogi.",
+      "b": "When should I prune apple trees?",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.43827468156814575
+    },
+    {
+      "a": "When should I prune apple trees?",
+      "b": "What is a reasonable tip in Lisbon?",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.48028120398521423
+    },
+    {
+      "a": "What is a reasonable tip in Lisbon?",
+      "b": "How do noise-cancelling headphones work?",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.4372815787792206
+    },
+    {
+      "a": "How do noise-cancelling headphones work?",
+      "b": "Explain why the sky is blue.",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.5064969658851624
+    },
+    {
+      "a": "Explain why the sky is blue.",
+      "b": "What is the capital of Portugal?",
+      "stratum": "unrelated",
+      "axis": "cross_domain",
+      "interchangeable": false,
+      "cosine": 0.3617348074913025
+    }
+  ]
+}

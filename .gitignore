@@ -1,0 +1,10 @@
+.env
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+# results/ is deliberately NOT ignored. The cache sweep output is the evidence
+# behind this repo's headline claim, and a claim whose data is untracked is an
+# assertion.

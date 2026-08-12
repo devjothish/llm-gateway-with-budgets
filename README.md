@@ -73,13 +73,30 @@ which pushes the vector further away. The metric measures surface overlap, and
 these two cases have surface overlap inverted relative to their meaning.
 
 That also rules out the two obvious fixes. A different threshold cannot separate
-distributions that overlap completely, and a different general-purpose embedding
-model optimizes the same surface-similarity objective.
+distributions that overlap completely, and a different embedding model optimizes
+the same surface-similarity objective.
 
-Reproduce it in about a minute, no API key and no paid model:
+### It is not one model's quirk
+
+The obvious rebuttal is that `bge-small` is simply a weak embedder. So the same
+workload was run against three models from three different training lineages:
+
+| Embedding model | Paraphrases (median) | Near-misses (median) | Inverted? |
+|---|---|---|---|
+| `BAAI/bge-small-en-v1.5` | 0.8853 | **0.9097** | yes |
+| `sentence-transformers/all-MiniLM-L6-v2` | 0.8509 | **0.9063** | yes |
+| `thenlper/gte-base` | 0.9239 | **0.9470** | yes |
+
+Every model ranks the pairs that must not be cached above the pairs that should
+be. On all three, **40 of 40** near-miss pairs score at or above the lowest
+genuine paraphrase, and the false-hit rate never drops below 69% at any
+threshold that produces hits at all. The larger `gte-base` is not a rescue: it
+raises the hit rate to 72.5% at 0.85 and still gets 69% of those hits wrong.
+
+Reproduce all three in a few minutes, no API key and no paid model:
 
 ```bash
-uv run python -m bench.sweep     # writes results/cache-sweep-bge-small-en-v1.5.json
+uv run python -m bench.sweep     # writes results/cache-sweep-<model>.json per model
 ```
 
 ### What was built instead
@@ -192,8 +209,9 @@ Two more things a reviewer should know:
 
 - 40 near-miss pairs, not the 200 originally planned. Per-axis counts are 3 to
   11, so the aggregate result holds and per-axis claims do not.
-- One embedding model, `bge-small-en-v1.5`. The mechanism argues the result
-  generalizes; that generalization is reasoned, not measured.
+- Three embedding models, not an exhaustive survey. All three are open,
+  general-purpose sentence encoders; a model trained specifically to separate
+  these cases has not been tried, and the mechanism suggests one could exist.
 - Ground truth is true by construction rather than human labelling. Good for
   reproducibility, and real traffic will not arrive in a clean three-way split.
 

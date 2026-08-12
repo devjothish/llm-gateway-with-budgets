@@ -7,9 +7,13 @@ No LLM is called. The whole measurement is embedding similarity against a
 workload whose ground truth is known by construction, which is what makes it
 cheap enough to rerun on every embedding-model change.
 
-    uv run python -m bench.sweep
+    uv run python -m bench.sweep [model ...]
 
-Writes `results/cache-sweep-<model>.json` and prints the table.
+Defaults to all three models in `MODELS`. They come from three different
+training lineages on purpose: a result that only holds for one family is a
+property of that family, not of sentence embeddings.
+
+Writes `results/cache-sweep-<model>.json` per model and prints the tables.
 """
 
 from __future__ import annotations
@@ -24,7 +28,11 @@ from fastembed import TextEmbedding
 from bench.stats import wilson
 from bench.workload import Pair, full_workload
 
-MODEL = "BAAI/bge-small-en-v1.5"
+MODELS = [
+    "BAAI/bge-small-en-v1.5",
+    "sentence-transformers/all-MiniLM-L6-v2",
+    "thenlper/gte-base",
+]
 THRESHOLDS = [0.85, 0.90, 0.92, 0.95, 0.97, 0.99]
 
 
@@ -60,9 +68,9 @@ def _cosine(u: list[float], v: list[float]) -> float:
     return float(dot / (nu * nv))
 
 
-def score(pairs: list[Pair]) -> list[Scored]:
+def score(pairs: list[Pair], model: str) -> list[Scored]:
     """One embedding pass over the unique prompt set, then pairwise cosine."""
-    embedder = TextEmbedding(model_name=MODEL)
+    embedder = TextEmbedding(model_name=model)
     texts = sorted({p.a for p in pairs} | {p.b for p in pairs})
     vectors = dict(zip(texts, (list(v) for v in embedder.embed(texts)), strict=True))
     return [
@@ -105,9 +113,9 @@ def _distribution(scored: list[Scored], stratum: str) -> str:
     return f"{xs[0]:.4f} / {statistics.median(xs):.4f} / {xs[-1]:.4f}"
 
 
-def report(scored: list[Scored], rows: list[Row]) -> str:
+def report(scored: list[Scored], rows: list[Row], model: str) -> str:
     out: list[str] = []
-    out.append(f"embedding model: {MODEL}   pairs: {len(scored)}\n")
+    out.append(f"embedding model: {model}   pairs: {len(scored)}\n")
 
     out.append("Cosine by stratum (min / median / max)")
     for stratum in ("duplicate", "near_miss", "unrelated"):
@@ -148,28 +156,53 @@ def report(scored: list[Scored], rows: list[Row]) -> str:
     return "\n".join(out)
 
 
-def main() -> None:
+def run(model: str) -> tuple[list[Scored], list[Row]]:
     pairs = full_workload()
-    scored = score(pairs)
+    scored = score(pairs, model)
     rows = sweep(scored)
 
-    text = report(scored, rows)
-    print(text)
+    print("=" * 78)
+    print(report(scored, rows, model))
 
     out = Path("results")
     out.mkdir(exist_ok=True)
-    path = out / f"cache-sweep-{MODEL.split('/')[-1]}.json"
+    path = out / f"cache-sweep-{model.split('/')[-1]}.json"
     path.write_text(
         json.dumps(
             {
-                "model": MODEL,
+                "model": model,
                 "thresholds": [asdict(r) for r in rows],
                 "pairs": [asdict(s) for s in scored],
             },
             indent=2,
         )
     )
-    print(f"\nwrote {path}")
+    print(f"\nwrote {path}\n")
+    return scored, rows
+
+
+def replication_table(results: dict[str, list[Scored]]) -> str:
+    """The cross-model summary. If the medians invert on every family, the
+    effect is a property of sentence embeddings rather than of one model."""
+    out = ["=" * 78, "REPLICATION ACROSS EMBEDDING FAMILIES", ""]
+    out.append(f"  {'model':40s} {'dup med':>9} {'near med':>9} {'inverted?':>10}")
+    for model, scored in results.items():
+        dup = statistics.median(s.cosine for s in scored if s.stratum == "duplicate")
+        near = statistics.median(s.cosine for s in scored if s.stratum == "near_miss")
+        out.append(f"  {model:40s} {dup:>9.4f} {near:>9.4f} {'YES' if near > dup else 'no':>10}")
+    out.append("")
+    out.append("  'inverted' = near-miss pairs, which must NOT share a cache entry,")
+    out.append("  are on average MORE similar than genuine paraphrases, which should.")
+    return "\n".join(out)
+
+
+def main() -> None:
+    import sys
+
+    models = sys.argv[1:] or MODELS
+    results = {m: run(m)[0] for m in models}
+    if len(results) > 1:
+        print(replication_table(results))
 
 
 if __name__ == "__main__":
